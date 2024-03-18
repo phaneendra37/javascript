@@ -71,3 +71,67 @@ const testing = test.map((item) => {
     // false means its Odd
     else return "Odd";
 });
+
+
+const printSquare = (number = 10, symbol = "*") => {
+    // Outer loop to iterate through each row
+    for (let i = 0; i < number; i++) {
+        // Initialize row with the symbol
+        var row = symbol;
+
+        // Inner loop to add symbols to the row
+        for (let j = 0; j < number * 3 - 1; j++) {
+            row += symbol;
+        }
+
+        // Loop to add spaces after the symbols
+        for (let k = number; k <= number + i; k++) {
+            row += " ";
+        }
+
+        // Print the row
+        console.log(row);
+    }
+}
+
+
+const printTheatreSeats = (row = 10, seatsPerRow = 5) => {
+    const filledSeat = [
+        { row: 1, seat: [1, 2, 3, 4, 5, 610] },
+        { row: 2, seat: [1, 2, 5, 9, 10] },
+        { row: 3, seat: [1, 6, 7, 8, 9, 10] },
+        { row: 4, seat: [1, 4, 5, 6, 7, 8, 9, 10] },
+        { row: 5, seat: [1, 2, 3, 8, 9, 10] },
+        { row: 6, seat: [1, 2, 3, 9, 10] },
+        { row: 7, seat: [1, 2, 3, , 9, 10] },
+    ];
+    // Loop through each row
+    for (let i = 1; i <= row; i++) {
+        var seats = ''; // Initialize an empty string to represent seats in a row
+
+        // Loop through each seat in the row
+        for (let j = 1; j <= seatsPerRow; j++) {
+            let item = filledSeat.findIndex(item => item?.row == i && item.seat.includes(j));
+            if (item >= 0) {
+                seats += "X"
+            } else {
+                seats += "O";
+            }
+            // Check if the seat is at the center of the row
+            if (Math.round(seatsPerRow / 2) === j) {
+                seats += "  "; // Add two spaces to represent an empty space in the center
+            }
+        }
+
+        // Add spaces to align the rows
+        for (let k = i; k <= row; k++) {
+            seats += ' '; // Add a space for each remaining row
+        }
+
+        // Print the seats in the row
+        console.log(seats);
+    }
+}
+
+// Call the function with custom row and seatsPerRow values
+printTheatreSeats(7, 20);
