@@ -133,5 +133,61 @@ const printTheatreSeats = (row = 10, seatsPerRow = 5) => {
     }
 }
 
-// Call the function with custom row and seatsPerRow values
-printTheatreSeats(7, 20);
+
+
+// Define an array of testing values
+const testingValues = [-3, -10, 0, 10];
+
+// Function to remove duplicate values from an array
+const removeDuplicateValues = (values) => {
+    // Create a Set to store unique values
+    const newArrayValues = new Set(values);
+    // Convert the Set back to an array
+    const results = [...newArrayValues];
+    // Return the array with duplicate values removed
+    return results;
+};
+
+// Function to sort an array of values in ascending order
+const sortValues = (values) => {
+    // Sort the array in ascending order
+    const newValues = values.sort((a, b) => a - b);
+    // Return the sorted array
+    return newValues;
+};
+
+// Function to print a series of numbers based on input array
+const printSeries = (values) => {
+    // Check if input is an object
+    if (typeof values !== "object") return;
+    // Remove duplicate values and store them in a new array
+    const newUniqueValues = removeDuplicateValues(values);
+    // Sort the unique values in ascending order
+    const sortUniqueValues = sortValues(newUniqueValues);
+    // Array to store the series of numbers
+    const series = [];
+    // Loop through the sorted unique values
+    for (let i = 0; i < sortUniqueValues.length; i++) {
+        // Get the current number in the series
+        let currentNumber = sortUniqueValues[i];
+        // Get the next value in the series
+        let nextValue = sortUniqueValues[i + 1];
+        // Calculate the difference between current and next value
+        let difference = nextValue - currentNumber;
+        // If there's a gap in the series
+        if (difference > 1) {
+            // Fill the gap by adding numbers to the series
+            for (let j = 0; j < difference; j++) {
+                series.push(currentNumber + j);
+            }
+        }
+        // If no gap, add the current number to the series
+        else series.push(currentNumber);
+    }
+    // Log the complete series
+    console.log(series);
+    return series
+}
+
+// Call the printSeries function with testing values
+printSeries(testingValues);
