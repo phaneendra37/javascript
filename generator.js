@@ -1,14 +1,16 @@
-
-function* test(arg1 = 2, arg2 = 3) {
-    yield 2
-    yield 2;
-    yield 2;
-    yield 2;
+function* fibonacci() {
+    var a = 0;
+    var b = 1;
+    while (true) {
+        yield a;
+        [a, b] = [b, a + b];
+    }
 }
-const testGen = test();
-const userData = testGen.next();
-const userData1 = testGen.next().value;
-const userData2 = testGen.next().done;
-const userData3 = testGen.return('done');
-const userData4 = testGen.throw('all done');
-console.log(userData, userData1, userData2, userData3, userData4);
+
+const series = fibonacci();
+
+for (let index = 0; index < 100; index++) {
+    series.return('hey');
+    console.log(series.next().done);
+    series.throw('hay')
+}

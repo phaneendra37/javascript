@@ -71,6 +71,7 @@ const someValue2 = numbers.some((item) => { })
 // Ternary operator will not work if we try to mutate the original array
 // able to break by returning true
 // The callback will take 3 arguments
+// it needs to pass all the items should pass the condition
 const everValue = donar.every((item, index, array) => { });
 const numberValue2 = numbers.every((item) => { });
 
@@ -84,6 +85,21 @@ const numberValue2 = numbers.every((item) => { });
 const findValue = donar.find((item, index, array) => { })
 const findValue2 = numbers.find((item) => { })
 
+
+// Return index
+// Empty loop will be undefined
+// Able to mutate the original values of an array of first or all
+// Ternary operator will not work if we try to mutate the original array
+// The callback will take 3 arguments
+// able to break by returning item
+donar.forEach((item, index, array) => {
+    let test = numbers.findIndex(numb => numb === index + 4)
+    if (test >= 0) return item
+})
+
+const findIndex1 = numbers.filter((item) => {
+
+});
 
 // use this method to transfer them into different structure
 const reducedArray = donar.reduce((acc, person) => {
@@ -101,15 +117,24 @@ const reducedArray = donar.reduce((acc, person) => {
 }, []);
 
 
+// Loop from 1 to 10
 for (let i = 1; i <= 10; i++) {
-    if (i == 5) { }
+    // Check if the current value of i is 5
+    if (i == 5) {
+        // Do nothing if i is 5
+    }
+    // Check if the current value of i is 8
     else if (i == 8) {
+        // Exit the loop if i is 8
         break;
     }
+    // If neither 5 nor 8, execute this block
     else {
-        console.log(i * 10);
+        // Print the value of i multiplied by 10
+        // console.log(i * 10);
     }
 }
+
 
 
 
